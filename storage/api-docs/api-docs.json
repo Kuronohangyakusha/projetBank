@@ -12,129 +12,58 @@
         }
     ],
     "paths": {
-        "/auth/login": {
-            "post": {
-                "tags": [
-                    "Authentification"
-                ],
-                "summary": "Connexion utilisateur",
-                "operationId": "985cd5203e2d0a820e113f2f4fdb2847",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "email",
-                                    "password"
-                                ],
-                                "properties": {
-                                    "email": {
-                                        "type": "string",
-                                        "format": "email",
-                                        "example": "user@example.com"
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "format": "password",
-                                        "example": "password123"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Connexion réussie",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "access_token": {
-                                            "type": "string"
-                                        },
-                                        "token_type": {
-                                            "type": "string",
-                                            "example": "Bearer"
-                                        },
-                                        "expires_in": {
-                                            "type": "integer"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Identifiants invalides"
-                    }
-                }
-            }
-        },
-        "/auth/logout": {
-            "post": {
-                "tags": [
-                    "Authentification"
-                ],
-                "summary": "Déconnexion utilisateur",
-                "operationId": "a05022a34eef599e04fb0a5254375b84",
-                "responses": {
-                    "200": {
-                        "description": "Déconnexion réussie"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/auth/user": {
+        "/users": {
             "get": {
                 "tags": [
-                    "Authentification"
+                    "Utilisateurs"
                 ],
-                "summary": "Informations de l'utilisateur connecté",
-                "operationId": "5df1e3769ba9fc9f727bcf278c51470f",
+                "summary": "Liste des utilisateurs",
+                "operationId": "c268732a8738b4668b1938523e8ff120",
                 "responses": {
                     "200": {
-                        "description": "Informations utilisateur",
+                        "description": "Liste des utilisateurs récupérée avec succès",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "properties": {
-                                        "id": {
-                                            "type": "integer"
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Test User"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "format": "email",
+                                                "example": "test@example.com"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            }
                                         },
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "email": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
+                                        "type": "object"
+                                    }
                                 }
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
+                }
             }
         }
     },
     "tags": [
         {
-            "name": "Authentification",
-            "description": "Authentification"
+            "name": "Utilisateurs",
+            "description": "Utilisateurs"
         }
     ]
 }

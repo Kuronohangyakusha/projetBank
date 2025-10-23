@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: projetbank-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        value: base64:FN2zzoVG8fFqxYWxSXaDAhXEb6rm7kK2j8Ni3j6duQ0=
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        value: dpg-d3t2brvgi27c73e2aedg-a.oregon-postgres.render.com
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        value: bankmanager_gk5o
+      - key: DB_USERNAME
+        value: bankmanager_gk5o_user
+      - key: DB_PASSWORD
+        value: EGFGKV49w5Wa7jVWqR5H19TR7e1sHyjN
+      - key: APP_DEBUG
+        value: false
+      - key: LOG_CHANNEL
+        value: stack
+    healthCheckPath: /api/v1/users
+    plan: starter

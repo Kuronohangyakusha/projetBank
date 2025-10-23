@@ -1,0 +1,36 @@
+# Fichiers de versionnement
+.git
+.gitignore
+
+# Environnements et secrets
+.env
+.env.example
+.env.local
+
+# Dépendances de développement
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Logs et caches temporaires
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+bootstrap/cache/*
+
+# Tests
+tests
+phpunit.xml
+
+# Documentation et assets inutiles pour le backend
+README.md
+resources/js
+resources/css
+vite.config.js
+package.json
+package-lock.json
+
+# Autres fichiers inutiles
+.editorconfig
+.phpunit.result.cache
