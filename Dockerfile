@@ -29,7 +29,8 @@ RUN chown -R www-data:www-data /var/www/html \
 # Optimisations pour la production
 RUN php artisan config:cache \
     && php artisan route:cache \
-    && php artisan view:cache
+    && php artisan view:cache \
+    && php artisan storage:link
 
 # Exposer le port 80 (Apache par défaut)
 EXPOSE 80
@@ -47,6 +48,9 @@ RUN echo '<VirtualHost *:80>\n\
     ErrorLog ${APACHE_LOG_DIR}/error.log\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
+
+# Créer le répertoire storage/app/public s'il n'existe pas
+RUN mkdir -p /var/www/html/storage/app/public
 
 # Commande de démarrage avec Apache
 CMD ["apache2-foreground"]
