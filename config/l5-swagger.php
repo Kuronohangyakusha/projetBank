@@ -6,6 +6,7 @@ return [
         'default' => [
             'api' => [
                 'title' => 'ProjetBank API Documentation',
+                'schemes' => ['https'],
             ],
 
             'routes' => [
