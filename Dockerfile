@@ -1,7 +1,7 @@
 # 1️⃣ Image PHP avec Apache et extensions requises
 FROM php:8.3-apache
 
-# 2️⃣ Installer les dépendances nécessaires
+# 2️⃣ Installer les dépendances système
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     zip unzip git \
@@ -13,27 +13,32 @@ RUN a2enmod rewrite
 # 4️⃣ Installer Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# 5️⃣ Copier le projet dans le conteneur
+# 5️⃣ Définir le dossier de travail
 WORKDIR /var/www/html
+
+# 6️⃣ Copier le projet dans le conteneur
 COPY . .
 
-# 6️⃣ Configurer Git pour éviter les erreurs de propriété
+# 7️⃣ Configurer Git pour éviter les erreurs de propriété
 RUN git config --global --add safe.directory /var/www/html
 
-# 7️⃣ Installer les dépendances Laravel
+# 8️⃣ Installer les dépendances Laravel
 RUN composer install --optimize-autoloader --no-dev
 
-# 8️⃣ Générer la clé d'application (optionnel si déjà dans .env)
-RUN php artisan key:generate
+# 9️⃣ Créer le .env si absent
+RUN if [ ! -f .env ]; then cp .env.example .env; fi
 
-# 9️⃣ Configurer Apache pour pointer vers public/
+# 10️⃣ Générer la clé Laravel si absente
+RUN php artisan key:generate --force
+
+# 11️⃣ Configurer Apache pour pointer vers public/
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
-# 10️⃣ Définir le dossier de stockage
+# 12️⃣ Fixer les permissions sur storage et bootstrap/cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# 10️⃣ Exposer le port Apache
+# 13️⃣ Exposer le port Apache
 EXPOSE 80
 
-# 11️⃣ Lancer Apache en foreground
+# 14️⃣ Lancer Apache en foreground
 CMD ["apache2-foreground"]
