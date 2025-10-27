@@ -7,18 +7,18 @@
     },
     "servers": [
         {
-            "url": "https://projetbank-4.onrender.com",
+            "url": "https://projetbank-4.onrender.com/api/ndeye-ndiaye",
             "description": "Serveur de production"
         }
     ],
     "paths": {
-        "/users": {
+        "/api/ndeye-ndiaye/users": {
             "get": {
                 "tags": [
                     "Utilisateurs"
                 ],
                 "summary": "Liste des utilisateurs",
-                "operationId": "c268732a8738b4668b1938523e8ff120",
+                "operationId": "581ee5e6b43bff9420d0ef8e5b34b02a",
                 "responses": {
                     "200": {
                         "description": "Liste des utilisateurs récupérée avec succès",
@@ -64,7 +64,7 @@
                 ],
                 "summary": "Créer un utilisateur",
                 "description": "Store a newly created resource in storage.",
-                "operationId": "381804010d0bc76cac24bab8ac5f1707",
+                "operationId": "95a3d485cd361bb36fdd83bdbb7e3c7b",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -145,14 +145,14 @@
                 }
             }
         },
-        "/clients": {
+        "/api/ndeye-ndiaye/clients": {
             "get": {
                 "tags": [
                     "Clients"
                 ],
                 "summary": "Liste des clients",
                 "description": "Display a listing of the resource.",
-                "operationId": "92d2d60da68760ef9f7f7c7ab95e3f0c",
+                "operationId": "eee6312ec8a8138fbac94977365f8d0a",
                 "responses": {
                     "200": {
                         "description": "Liste des clients récupérée avec succès",
@@ -233,14 +233,14 @@
                 }
             }
         },
-        "/users/{userId}/clients": {
+        "/api/ndeye-ndiaye/users/{userId}/clients": {
             "get": {
                 "tags": [
                     "Clients"
                 ],
                 "summary": "Clients d'un utilisateur",
                 "description": "Get clients by user ID",
-                "operationId": "6c1fbd380b5e9a2353119ff8a7fd95c3",
+                "operationId": "48116b0a2a48d48a120c562030b6d32a",
                 "parameters": [
                     {
                         "name": "userId",
@@ -309,14 +309,14 @@
                 }
             }
         },
-        "/clients/{id}/comptes": {
+        "/api/ndeye-ndiaye/clients/{id}/comptes": {
             "get": {
                 "tags": [
                     "Clients"
                 ],
                 "summary": "Comptes d'un client",
                 "description": "Get client comptes",
-                "operationId": "0e5dc3c51469dc44c19831d78c81c8a0",
+                "operationId": "f43f3a016a45a4406aff321765f3b387",
                 "parameters": [
                     {
                         "name": "id",
@@ -377,14 +377,14 @@
                 }
             }
         },
-        "/comptes": {
+        "/api/ndeye-ndiaye/comptes": {
             "get": {
                 "tags": [
                     "Comptes"
                 ],
                 "summary": "Liste des comptes avec pagination et filtres",
                 "description": "Display a listing of the resource.",
-                "operationId": "62186908ce548b721ae5b90f621e56d4",
+                "operationId": "b8cb91152f801bf824a12b2a7565821c",
                 "parameters": [
                     {
                         "name": "page",
@@ -615,7 +615,7 @@
                 ],
                 "summary": "Créer un nouveau compte bancaire",
                 "description": "Store a newly created resource in storage.",
-                "operationId": "458db376a3bd23c52102bbd05cda318b",
+                "operationId": "7692a7c7be9974b0bd2b0dbcfca399d4",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -818,14 +818,14 @@
                 }
             }
         },
-        "/comptes/{compteId}": {
+        "/api/ndeye-ndiaye/comptes/{compteId}": {
             "get": {
                 "tags": [
                     "Comptes"
                 ],
                 "summary": "Récupérer un compte spécifique",
                 "description": "Display the specified resource.",
-                "operationId": "9393f94334edf70e2d6290c88e159def",
+                "operationId": "afbf0d8e20c3b5009b5fe527eeb99b73",
                 "parameters": [
                     {
                         "name": "compteId",
@@ -967,7 +967,7 @@
                 ],
                 "summary": "Mettre à jour les informations du client associé à un compte",
                 "description": "Update the specified resource in storage.",
-                "operationId": "a5153179da9f93a36469e847f4cb6cef",
+                "operationId": "0273e57ae814cdc45e4fcb66bbf0b75d",
                 "parameters": [
                     {
                         "name": "compteId",
@@ -1163,14 +1163,14 @@
                 }
             }
         },
-        "/comptes/numero/{numero}": {
+        "/api/ndeye-ndiaye/comptes/numero/{numero}": {
             "get": {
                 "tags": [
                     "Comptes"
                 ],
                 "summary": "Rechercher un compte par numéro",
                 "description": "Get compte by numero",
-                "operationId": "d1ec0fefde3e3f497b1e73f89fb67988",
+                "operationId": "b825e58cefb33ca9a9f5a904760d95d4",
                 "parameters": [
                     {
                         "name": "numero",
@@ -1250,14 +1250,14 @@
                 }
             }
         },
-        "/comptes/client/{clientId}": {
+        "/api/ndeye-ndiaye/comptes/client/{clientId}": {
             "get": {
                 "tags": [
                     "Comptes"
                 ],
                 "summary": "Comptes d'un client avec pagination et filtres",
                 "description": "Get comptes by client ID",
-                "operationId": "af7e6ed36f1a229fe7c4b8e7c3bd188e",
+                "operationId": "815d91865433fb3ff2b5e3a9f7c18da3",
                 "parameters": [
                     {
                         "name": "clientId",
@@ -1463,14 +1463,14 @@
                 }
             }
         },
-        "/comptes/{id}/solde": {
+        "/api/ndeye-ndiaye/comptes/{id}/solde": {
             "patch": {
                 "tags": [
                     "Comptes"
                 ],
                 "summary": "Mettre à jour le solde d'un compte",
                 "description": "Update compte solde",
-                "operationId": "4213ca6cca7aab28fb86c4b3445abccb",
+                "operationId": "74671c01df0d151bc085b52225db32f6",
                 "parameters": [
                     {
                         "name": "id",
@@ -1554,14 +1554,14 @@
                 }
             }
         },
-        "/transactions": {
+        "/api/ndeye-ndiaye/transactions": {
             "get": {
                 "tags": [
                     "Transactions"
                 ],
                 "summary": "Liste des transactions",
                 "description": "Display a listing of the resource.",
-                "operationId": "41f5865254fe3acd0cc877cdead327c1",
+                "operationId": "3b00ac48ece07c1376639b60818fa7a2",
                 "responses": {
                     "200": {
                         "description": "Liste des transactions récupérée avec succès",
@@ -1618,14 +1618,14 @@
                 }
             }
         },
-        "/transactions/depot": {
+        "/api/ndeye-ndiaye/transactions/depot": {
             "post": {
                 "tags": [
                     "Transactions"
                 ],
                 "summary": "Effectuer un dépôt",
                 "description": "Process a deposit",
-                "operationId": "8afe13fbb5c522b23dcafd0a21a643c0",
+                "operationId": "d6fb0416d8485be57704b70f86b4ef38",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1710,14 +1710,14 @@
                 }
             }
         },
-        "/transactions/retrait": {
+        "/api/ndeye-ndiaye/transactions/retrait": {
             "post": {
                 "tags": [
                     "Transactions"
                 ],
                 "summary": "Effectuer un retrait",
                 "description": "Process a withdrawal",
-                "operationId": "3fa7b8b7982968014348c5aa3b628019",
+                "operationId": "f09c227760cf750dc86a8611f17bae85",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1818,14 +1818,14 @@
                 }
             }
         },
-        "/transactions/virement": {
+        "/api/ndeye-ndiaye/transactions/virement": {
             "post": {
                 "tags": [
                     "Transactions"
                 ],
                 "summary": "Effectuer un virement",
                 "description": "Process a transfer",
-                "operationId": "422e6e55c32cef348a21caf803e9a026",
+                "operationId": "d50827164ffef81130e78dec68854124",
                 "requestBody": {
                     "required": true,
                     "content": {
