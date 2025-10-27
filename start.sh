@@ -2,8 +2,10 @@
 
 # Wait for database to be ready (with timeout)
 echo "Waiting for database to be ready..."
-export PGPASSWORD="$DB_PASSWORD"
-timeout=60
+if [ -n "$DB_PASSWORD" ]; then
+  export PGPASSWORD="$DB_PASSWORD"
+fi
+timeout=30
 elapsed=0
 while ! pg_isready -h $DB_HOST -p $DB_PORT -U $DB_USERNAME 2>/dev/null; do
   if [ $elapsed -ge $timeout ]; then

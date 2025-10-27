@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return 'OK';
+    return response('OK', 200)->header('Content-Type', 'text/plain');
 });
 
 // Swagger documentation route
