@@ -27,5 +27,5 @@ services:
         value: stack
       - key: SEED_DB
         value: false
-    healthCheckPath: /
+    healthCheckPath: /api/ndeye-ndiaye/users
     plan: free

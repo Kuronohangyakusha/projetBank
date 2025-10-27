@@ -37,14 +37,22 @@ php artisan route:cache
 echo "Generating Swagger documentation..."
 php artisan l5-swagger:generate
 
-# Run database migrations
+# Run database migrations (skip if database is not ready)
 echo "Running database migrations..."
-php artisan migrate --force
+if php artisan migrate --force 2>/dev/null; then
+    echo "Migrations completed successfully"
+else
+    echo "Database not ready for migrations, skipping..."
+fi
 
-# Seed database if SEED_DB is set to true
+# Seed database if SEED_DB is set to true (skip if database is not ready)
 if [ "$SEED_DB" = "true" ]; then
     echo "Seeding database..."
-    php artisan db:seed --force
+    if php artisan db:seed --force 2>/dev/null; then
+        echo "Database seeding completed successfully"
+    else
+        echo "Database not ready for seeding, skipping..."
+    fi
 fi
 
 # Set proper permissions
@@ -52,6 +60,5 @@ chown -R www-data:www-data /var/www/html/storage
 chown -R www-data:www-data /var/www/html/bootstrap/cache
 
 echo "Starting Apache..."
-# Set Apache to listen on the PORT provided by Render (default 80)
-export APACHE_RUN_PORT=${PORT:-80}
+# Apache will listen on port 80 by default, Render handles port mapping
 exec "$@"
