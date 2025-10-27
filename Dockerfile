@@ -20,6 +20,12 @@ RUN apt-get update && apt-get install -y \
     npm \
     && docker-php-ext-install pdo_pgsql mbstring exif pcntl bcmath gd zip
 
+# Enable Apache modules
+RUN a2enmod rewrite
+
+# Copy custom Apache configuration
+COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
