@@ -2,7 +2,7 @@
 
 # Wait for database to be ready
 echo "Waiting for database to be ready..."
-until pg_isready -h db -p 5432 -U bankmanager_user; do
+until pg_isready -h dpg-d3t2brvgi27c73e2aedg-a.oregon-postgres.render.com -p 5432 -U bankmanager_gk5o_user; do
   echo "Database is unavailable - sleeping"
   sleep 2
 done
