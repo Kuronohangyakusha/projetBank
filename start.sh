@@ -1,21 +1,7 @@
 #!/bin/bash
 
-# Wait for database to be ready (with timeout)
-echo "Waiting for database to be ready..."
-if [ -n "$DB_PASSWORD" ]; then
-  export PGPASSWORD="$DB_PASSWORD"
-fi
-timeout=30
-elapsed=0
-while ! pg_isready -h $DB_HOST -p $DB_PORT -U $DB_USERNAME 2>/dev/null; do
-  if [ $elapsed -ge $timeout ]; then
-    echo "Database connection timeout after ${timeout}s, continuing startup..."
-    break
-  fi
-  echo "Database is unavailable - sleeping"
-  sleep 2
-  elapsed=$((elapsed + 2))
-done
+# Skip database connection check in production (database is external)
+echo "Skipping database connection check for external database..."
 
 echo "Database is ready!"
 

@@ -1,24 +1,10 @@
 #!/bin/bash
 
-# Wait for database to be ready (with timeout)
-echo "Waiting for database to be ready..."
+# Skip database connection check in production (database is external)
+echo "Skipping database connection check for external database..."
 echo "DB_HOST: $DB_HOST"
 echo "DB_PORT: $DB_PORT"
 echo "DB_USERNAME: $DB_USERNAME"
-if [ -n "$DB_PASSWORD" ]; then
-  export PGPASSWORD="$DB_PASSWORD"
-fi
-timeout=30
-elapsed=0
-while ! pg_isready -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USERNAME" 2>/dev/null; do
-  if [ $elapsed -ge $timeout ]; then
-    echo "Database connection timeout after ${timeout}s, continuing startup..."
-    break
-  fi
-  echo "Database is unavailable - sleeping"
-  sleep 2
-  elapsed=$((elapsed + 2))
-done
 
 echo "Database is ready!"
 
@@ -37,22 +23,14 @@ php artisan route:cache
 echo "Generating Swagger documentation..."
 php artisan l5-swagger:generate
 
-# Run database migrations (skip if database is not ready)
+# Run database migrations
 echo "Running database migrations..."
-if php artisan migrate --force 2>/dev/null; then
-    echo "Migrations completed successfully"
-else
-    echo "Database not ready for migrations, skipping..."
-fi
+php artisan migrate --force
 
-# Seed database if SEED_DB is set to true (skip if database is not ready)
+# Seed database if SEED_DB is set to true
 if [ "$SEED_DB" = "true" ]; then
     echo "Seeding database..."
-    if php artisan db:seed --force 2>/dev/null; then
-        echo "Database seeding completed successfully"
-    else
-        echo "Database not ready for seeding, skipping..."
-    fi
+    php artisan db:seed --force
 fi
 
 # Set proper permissions

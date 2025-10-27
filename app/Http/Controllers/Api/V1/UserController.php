@@ -19,8 +19,12 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
-        $users = $this->userService->getAllUsers();
-        return response()->json($users);
+        try {
+            $users = $this->userService->getAllUsers();
+            return response()->json($users);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Database connection failed: ' . $e->getMessage()], 500);
+        }
     }
 
     /**
