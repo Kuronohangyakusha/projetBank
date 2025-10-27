@@ -18,7 +18,7 @@ class ClientController extends Controller
      * Display a listing of the resource.
      *
      * @OA\Get(
-     *     path="/api/v1/clients",
+     *     path="/api/ndeye-ndiaye/clients",
      *     tags={"Clients"},
      *     summary="Liste des clients",
      *     @OA\Response(
@@ -108,7 +108,7 @@ class ClientController extends Controller
      * Get clients by user ID
      *
      * @OA\Get(
-     *     path="/api/v1/users/{userId}/clients",
+     *     path="/api/ndeye-ndiaye/users/{userId}/clients",
      *     tags={"Clients"},
      *     summary="Clients d'un utilisateur",
      *     @OA\Parameter(
@@ -146,7 +146,7 @@ class ClientController extends Controller
      * Get client comptes
      *
      * @OA\Get(
-     *     path="/api/v1/clients/{id}/comptes",
+     *     path="/api/ndeye-ndiaye/clients/{id}/comptes",
      *     tags={"Clients"},
      *     summary="Comptes d'un client",
      *     @OA\Parameter(

@@ -17,7 +17,7 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @OA\Get(
-     *     path="/api/v1/users",
+     *     path="/api/ndeye-ndiaye/users",
      *     tags={"Utilisateurs"},
      *     summary="Liste des utilisateurs",
      *     @OA\Response(
@@ -61,7 +61,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @OA\Post(
-     *     path="/api/v1/users",
+     *     path="/api/ndeye-ndiaye/users",
      *     tags={"Utilisateurs"},
      *     summary="Créer un utilisateur",
      *     @OA\RequestBody(

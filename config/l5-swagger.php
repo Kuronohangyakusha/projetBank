@@ -8,8 +8,8 @@ return [
                 'title' => 'Ndiaye Ndeye - API Banque',
                 'description' => 'API complète de gestion bancaire avec authentification, clients, comptes et transactions',
                 'version' => '1.0.0',
-                'schemes' => ['http'],
-                'host' => 'localhost:8082',
+                'schemes' => ['https'],
+                'host' => env('APP_URL') ? parse_url(env('APP_URL'), PHP_URL_HOST) : 'projetbank-4.onrender.com',
             ],
 
             'routes' => [
