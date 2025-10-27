@@ -1,14 +1,21 @@
 #!/bin/bash
 
-# Wait for database to be ready
+# Wait for database to be ready (with timeout)
 echo "Waiting for database to be ready..."
 echo "DB_HOST: $DB_HOST"
 echo "DB_PORT: $DB_PORT"
 echo "DB_USERNAME: $DB_USERNAME"
 export PGPASSWORD="$DB_PASSWORD"
-until pg_isready -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USERNAME"; do
+timeout=60
+elapsed=0
+while ! pg_isready -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USERNAME" 2>/dev/null; do
+  if [ $elapsed -ge $timeout ]; then
+    echo "Database connection timeout after ${timeout}s, continuing startup..."
+    break
+  fi
   echo "Database is unavailable - sleeping"
   sleep 2
+  elapsed=$((elapsed + 2))
 done
 
 echo "Database is ready!"
@@ -43,4 +50,6 @@ chown -R www-data:www-data /var/www/html/storage
 chown -R www-data:www-data /var/www/html/bootstrap/cache
 
 echo "Starting Apache..."
+# Set Apache to listen on the PORT provided by Render (default 80)
+export APACHE_RUN_PORT=${PORT:-80}
 exec "$@"

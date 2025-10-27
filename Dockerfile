@@ -50,11 +50,11 @@ RUN chown -R www-data:www-data /var/www/html \
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-# Expose port 80
+# Expose port 80 (will be overridden by Render's PORT)
 EXPOSE 80
 
 # Set entrypoint
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-# Start Apache
-CMD ["apache2-foreground"]
+# Start Apache with dynamic port
+CMD apache2-foreground
