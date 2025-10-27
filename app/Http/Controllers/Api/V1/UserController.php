@@ -41,7 +41,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @OA\Post(
-     *     path="/api/ndeye-ndiaye/users",
+     *     path="/users",
      *     tags={"Utilisateurs"},
      *     summary="Créer un utilisateur",
      *     @OA\RequestBody(
