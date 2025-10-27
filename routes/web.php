@@ -18,9 +18,9 @@ Route::get('/', function () {
 });
 
 // Swagger documentation route
-Route::get('/api/documentation', function () {
+Route::get('/ndiaye/documentation', function () {
     $documentation = 'default';
-    $urlToDocs = route('l5-swagger.'.$documentation.'.docs');
+    $urlToDocs = 'http://localhost:8082/docs'; // Force HTTP URL
     $configUrl = config('l5-swagger.defaults.additional_config_url');
     $validatorUrl = config('l5-swagger.defaults.validator_url');
     $operationsSorter = config('l5-swagger.defaults.ui.operations_sort');
@@ -34,4 +34,4 @@ Route::get('/api/documentation', function () {
         'operationsSorter',
         'useAbsolutePath'
     ));
-});
+})->middleware('cors');

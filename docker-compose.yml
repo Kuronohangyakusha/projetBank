@@ -1,0 +1,62 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:80"
+    depends_on:
+      - db
+      - pgadmin
+    env_file:
+      - .env.docker
+    volumes:
+      - ./storage:/var/www/html/storage
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/api/ndeye-ndiaye/users"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - laravel
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: bankmanager_user
+      POSTGRES_PASSWORD: bankmanager_password
+      POSTGRES_DB: bankmanager_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bankmanager_user -d bankmanager_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - laravel
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@bankmanager.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - laravel
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  laravel:
+    driver: bridge

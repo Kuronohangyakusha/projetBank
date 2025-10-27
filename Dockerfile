@@ -1,44 +1,54 @@
-# 1️⃣ Image PHP avec Apache et extensions requises
+# Use PHP 8.3 with Apache
 FROM php:8.3-apache
 
-# 2️⃣ Installer les dépendances système
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    zip unzip git \
-    && docker-php-ext-install pdo pdo_pgsql
-
-# 3️⃣ Activer mod_rewrite pour Apache
-RUN a2enmod rewrite
-
-# 4️⃣ Installer Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-# 5️⃣ Définir le dossier de travail
+# Set working directory
 WORKDIR /var/www/html
 
-# 6️⃣ Copier le projet dans le conteneur
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    libpq-dev \
+    postgresql-client \
+    nodejs \
+    npm \
+    && docker-php-ext-install pdo_pgsql mbstring exif pcntl bcmath gd zip
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Copy composer files
+COPY composer.json composer.lock ./
+
+# Install PHP dependencies
+RUN composer install --optimize-autoloader --no-dev --no-interaction --no-scripts
+
+# Copy application code
 COPY . .
 
-# 7️⃣ Configurer Git pour éviter les erreurs de propriété
-RUN git config --global --add safe.directory /var/www/html
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html/storage \
+    && chmod -R 755 /var/www/html/bootstrap/cache
 
-# 8️⃣ Installer les dépendances Laravel
-RUN composer install --optimize-autoloader --no-dev
+# Copy custom entrypoint
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-# 9️⃣ Créer le .env si absent
-RUN if [ ! -f .env ]; then cp .env.example .env; fi
-
-# 10️⃣ Générer la clé Laravel si absente
-RUN php artisan key:generate --force
-
-# 11️⃣ Configurer Apache pour pointer vers public/
-RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
-
-# 12️⃣ Fixer les permissions sur storage et bootstrap/cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-
-# 13️⃣ Exposer le port Apache
+# Expose port 80
 EXPOSE 80
 
-# 14️⃣ Lancer Apache en foreground
+# Set entrypoint
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+# Start Apache
 CMD ["apache2-foreground"]

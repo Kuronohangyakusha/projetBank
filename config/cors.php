@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 
-    'allowed_origins' => ['http://localhost:3000', 'http://localhost:8000', 'http://127.0.0.1:3000', 'http://127.0.0.1:8000'],
+    'allowed_origins' => ['http://localhost:3000', 'http://localhost:8000', 'https://localhost:8000', 'http://127.0.0.1:3000', 'http://127.0.0.1:8000', 'https://127.0.0.1:8000', 'http://localhost:8082', 'https://localhost:8082', 'http://front.banque.example.com'],
 
     'allowed_origins_patterns' => [],
 

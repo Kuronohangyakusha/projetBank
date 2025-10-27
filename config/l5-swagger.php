@@ -5,8 +5,11 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'ProjetBank API Documentation',
-                'schemes' => ['https'],
+                'title' => 'Ndiaye Ndeye - API Banque',
+                'description' => 'API complète de gestion bancaire avec authentification, clients, comptes et transactions',
+                'version' => '1.0.0',
+                'schemes' => ['http'],
+                'host' => 'localhost:8082',
             ],
 
             'routes' => [
@@ -19,7 +22,7 @@ return [
                 /*
                  * Edit to include full URL in ui for assets
                  */
-                'use_absolute_path' => env('L5_SWAGGER_USE_ABSOLUTE_PATH', true),
+                'use_absolute_path' => env('L5_SWAGGER_USE_ABSOLUTE_PATH', false),
 
                 /*
                 * Edit to set path where swagger ui assets should be stored
@@ -209,13 +212,11 @@ return [
                         ],
                     ],
                 ],
-                'bearerAuth' => [ // Unique name of security
-                    'type' => 'http', // The type of the security scheme. Valid values are "basic", "apiKey" or "oauth2".
-                    'description' => 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"',
+                'sanctum' => [ // Unique name of security
+                    'type' => 'apiKey', // Valid values are "basic", "apiKey" or "oauth2".
+                    'description' => 'Enter token in format (Bearer <token>)',
                     'name' => 'Authorization', // The name of the header or query parameter to be used.
                     'in' => 'header', // The location of the API key. Valid values are "query" or "header".
-                    'scheme' => 'bearer',
-                    'bearerFormat' => 'JWT',
                 ],
                 */
             ],
@@ -240,7 +241,7 @@ return [
          * Set this to `true` in development mode so that docs would be regenerated on each request
          * Set this to `false` to disable swagger generation on production
          */
-        'generate_always' => env('L5_SWAGGER_GENERATE_ALWAYS', false),
+        'generate_always' => env('L5_SWAGGER_GENERATE_ALWAYS', true),
 
         /*
          * Set this to `true` to generate a copy of documentation in yaml format
@@ -277,14 +278,14 @@ return [
          */
         'ui' => [
             'display' => [
-                'dark_mode' => env('L5_SWAGGER_UI_DARK_MODE', false),
+                'dark_mode' => env('L5_SWAGGER_UI_DARK_MODE', true),
                 /*
                  * Controls the default expansion setting for the operations and tags. It can be :
                  * 'list' (expands only the tags),
                  * 'full' (expands the tags and operations),
                  * 'none' (expands nothing).
                  */
-                'doc_expansion' => env('L5_SWAGGER_UI_DOC_EXPANSION', 'none'),
+                'doc_expansion' => env('L5_SWAGGER_UI_DOC_EXPANSION', 'list'),
 
                 /**
                  * If set, enables filtering. The top bar will show an edit box that
@@ -301,7 +302,7 @@ return [
                 /*
                  * If set to true, it persists authorization data, and it would not be lost on browser close/refresh
                  */
-                'persist_authorization' => env('L5_SWAGGER_UI_PERSIST_AUTHORIZATION', false),
+                'persist_authorization' => env('L5_SWAGGER_UI_PERSIST_AUTHORIZATION', true),
 
                 'oauth2' => [
                     /*

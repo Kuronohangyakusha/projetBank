@@ -25,5 +25,5 @@ services:
         value: false
       - key: LOG_CHANNEL
         value: stack
-    healthCheckPath: /api/v1/users
+    healthCheckPath: /api/ndeye-ndiaye/users
     plan: starter
