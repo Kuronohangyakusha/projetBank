@@ -7,18 +7,18 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8000/api/v1",
-            "description": "Serveur de développement"
+            "url": "https://projetbank-4.onrender.com/api/ndeye-ndiaye",
+            "description": "Serveur de production"
         }
     ],
     "paths": {
-        "/users": {
+        "/api/ndeye-ndiaye/users": {
             "get": {
                 "tags": [
                     "Utilisateurs"
                 ],
                 "summary": "Liste des utilisateurs",
-                "operationId": "c268732a8738b4668b1938523e8ff120",
+                "operationId": "581ee5e6b43bff9420d0ef8e5b34b02a",
                 "responses": {
                     "200": {
                         "description": "Liste des utilisateurs récupérée avec succès",
@@ -57,16 +57,102 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Utilisateurs"
+                ],
+                "summary": "Créer un utilisateur",
+                "description": "Store a newly created resource in storage.",
+                "operationId": "95a3d485cd361bb36fdd83bdbb7e3c7b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "minLength": 8,
+                                        "example": "password123"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Utilisateur créé avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "uuid"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "John Doe"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "format": "email",
+                                            "example": "john@example.com"
+                                        },
+                                        "email_verified_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erreur de validation"
+                    }
+                }
             }
         },
-        "/api/v1/clients": {
+        "/api/ndeye-ndiaye/clients": {
             "get": {
                 "tags": [
                     "Clients"
                 ],
                 "summary": "Liste des clients",
                 "description": "Display a listing of the resource.",
-                "operationId": "3dc702c49ee2caa5dd56328483587398",
+                "operationId": "eee6312ec8a8138fbac94977365f8d0a",
                 "responses": {
                     "200": {
                         "description": "Liste des clients récupérée avec succès",
@@ -147,14 +233,14 @@
                 }
             }
         },
-        "/api/v1/users/{userId}/clients": {
+        "/api/ndeye-ndiaye/users/{userId}/clients": {
             "get": {
                 "tags": [
                     "Clients"
                 ],
                 "summary": "Clients d'un utilisateur",
                 "description": "Get clients by user ID",
-                "operationId": "4bb454370418dd2b7c0c5d66ba48928a",
+                "operationId": "48116b0a2a48d48a120c562030b6d32a",
                 "parameters": [
                     {
                         "name": "userId",
@@ -223,14 +309,14 @@
                 }
             }
         },
-        "/api/v1/clients/{id}/comptes": {
+        "/api/ndeye-ndiaye/clients/{id}/comptes": {
             "get": {
                 "tags": [
                     "Clients"
                 ],
                 "summary": "Comptes d'un client",
                 "description": "Get client comptes",
-                "operationId": "d1cd2da93e58f6d8e22f5de8b4715a63",
+                "operationId": "f43f3a016a45a4406aff321765f3b387",
                 "parameters": [
                     {
                         "name": "id",
@@ -291,14 +377,14 @@
                 }
             }
         },
-        "/api/v1/comptes": {
+        "/api/ndeye-ndiaye/comptes": {
             "get": {
                 "tags": [
                     "Comptes"
                 ],
                 "summary": "Liste des comptes avec pagination et filtres",
                 "description": "Display a listing of the resource.",
-                "operationId": "e08298dbea7e337b2ce3af7d443388c7",
+                "operationId": "b8cb91152f801bf824a12b2a7565821c",
                 "parameters": [
                     {
                         "name": "page",
@@ -529,7 +615,7 @@
                 ],
                 "summary": "Créer un nouveau compte bancaire",
                 "description": "Store a newly created resource in storage.",
-                "operationId": "c4b9822f8407aeeaa6ed3cf36ed4ad35",
+                "operationId": "7692a7c7be9974b0bd2b0dbcfca399d4",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -732,14 +818,14 @@
                 }
             }
         },
-        "/api/v1/comptes/{compteId}": {
+        "/api/ndeye-ndiaye/comptes/{compteId}": {
             "get": {
                 "tags": [
                     "Comptes"
                 ],
                 "summary": "Récupérer un compte spécifique",
                 "description": "Display the specified resource.",
-                "operationId": "363ad13052b7e1e7ec4cd9c96fe29bf7",
+                "operationId": "afbf0d8e20c3b5009b5fe527eeb99b73",
                 "parameters": [
                     {
                         "name": "compteId",
@@ -881,7 +967,7 @@
                 ],
                 "summary": "Mettre à jour les informations du client associé à un compte",
                 "description": "Update the specified resource in storage.",
-                "operationId": "4a30276ae5928588f6c54fb55843d3b8",
+                "operationId": "0273e57ae814cdc45e4fcb66bbf0b75d",
                 "parameters": [
                     {
                         "name": "compteId",
@@ -1077,14 +1163,14 @@
                 }
             }
         },
-        "/api/v1/comptes/numero/{numero}": {
+        "/api/ndeye-ndiaye/comptes/numero/{numero}": {
             "get": {
                 "tags": [
                     "Comptes"
                 ],
                 "summary": "Rechercher un compte par numéro",
                 "description": "Get compte by numero",
-                "operationId": "3f43f231b801123efa1b906ee27769a0",
+                "operationId": "b825e58cefb33ca9a9f5a904760d95d4",
                 "parameters": [
                     {
                         "name": "numero",
@@ -1164,14 +1250,14 @@
                 }
             }
         },
-        "/api/v1/comptes/client/{clientId}": {
+        "/api/ndeye-ndiaye/comptes/client/{clientId}": {
             "get": {
                 "tags": [
                     "Comptes"
                 ],
                 "summary": "Comptes d'un client avec pagination et filtres",
                 "description": "Get comptes by client ID",
-                "operationId": "04a47aff63d88b6ef6be271e0c3b4312",
+                "operationId": "815d91865433fb3ff2b5e3a9f7c18da3",
                 "parameters": [
                     {
                         "name": "clientId",
@@ -1377,14 +1463,14 @@
                 }
             }
         },
-        "/api/v1/comptes/{id}/solde": {
+        "/api/ndeye-ndiaye/comptes/{id}/solde": {
             "patch": {
                 "tags": [
                     "Comptes"
                 ],
                 "summary": "Mettre à jour le solde d'un compte",
                 "description": "Update compte solde",
-                "operationId": "a3aaf2b17190ac91f4b6b77669a5edbb",
+                "operationId": "74671c01df0d151bc085b52225db32f6",
                 "parameters": [
                     {
                         "name": "id",
@@ -1468,14 +1554,14 @@
                 }
             }
         },
-        "/api/v1/transactions": {
+        "/api/ndeye-ndiaye/transactions": {
             "get": {
                 "tags": [
                     "Transactions"
                 ],
                 "summary": "Liste des transactions",
                 "description": "Display a listing of the resource.",
-                "operationId": "0ffe6bf7980513c9d322e1ba4d400ff2",
+                "operationId": "3b00ac48ece07c1376639b60818fa7a2",
                 "responses": {
                     "200": {
                         "description": "Liste des transactions récupérée avec succès",
@@ -1532,14 +1618,14 @@
                 }
             }
         },
-        "/api/v1/transactions/depot": {
+        "/api/ndeye-ndiaye/transactions/depot": {
             "post": {
                 "tags": [
                     "Transactions"
                 ],
                 "summary": "Effectuer un dépôt",
                 "description": "Process a deposit",
-                "operationId": "b25357ddc41cafb1c1912f91ac368364",
+                "operationId": "d6fb0416d8485be57704b70f86b4ef38",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1624,14 +1710,14 @@
                 }
             }
         },
-        "/api/v1/transactions/retrait": {
+        "/api/ndeye-ndiaye/transactions/retrait": {
             "post": {
                 "tags": [
                     "Transactions"
                 ],
                 "summary": "Effectuer un retrait",
                 "description": "Process a withdrawal",
-                "operationId": "fc085500db9f3f905f76c954bbd26e78",
+                "operationId": "f09c227760cf750dc86a8611f17bae85",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1732,14 +1818,14 @@
                 }
             }
         },
-        "/api/v1/transactions/virement": {
+        "/api/ndeye-ndiaye/transactions/virement": {
             "post": {
                 "tags": [
                     "Transactions"
                 ],
                 "summary": "Effectuer un virement",
                 "description": "Process a transfer",
-                "operationId": "c59300a3fc8b17fcecdd262321190a2f",
+                "operationId": "d50827164ffef81130e78dec68854124",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1837,144 +1923,6 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Solde insuffisant"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Erreur de validation"
-                    }
-                }
-            }
-        },
-        "/api/v1/users": {
-            "get": {
-                "tags": [
-                    "Utilisateurs"
-                ],
-                "summary": "Liste des utilisateurs",
-                "description": "Display a listing of the resource.",
-                "operationId": "12e989554c281d650dff75443acabf54",
-                "responses": {
-                    "200": {
-                        "description": "Liste des utilisateurs récupérée avec succès",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "properties": {
-                                            "id": {
-                                                "type": "string",
-                                                "example": "uuid"
-                                            },
-                                            "name": {
-                                                "type": "string",
-                                                "example": "John Doe"
-                                            },
-                                            "email": {
-                                                "type": "string",
-                                                "format": "email",
-                                                "example": "john@example.com"
-                                            },
-                                            "email_verified_at": {
-                                                "type": "string",
-                                                "format": "date-time"
-                                            },
-                                            "created_at": {
-                                                "type": "string",
-                                                "format": "date-time"
-                                            },
-                                            "updated_at": {
-                                                "type": "string",
-                                                "format": "date-time"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Utilisateurs"
-                ],
-                "summary": "Créer un utilisateur",
-                "description": "Store a newly created resource in storage.",
-                "operationId": "64da9b5a20fa4f20e947ed61b2bbb6da",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name",
-                                    "email",
-                                    "password",
-                                    "password_confirmation"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "example": "John Doe"
-                                    },
-                                    "email": {
-                                        "type": "string",
-                                        "format": "email",
-                                        "example": "john@example.com"
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "minLength": 8,
-                                        "example": "password123"
-                                    },
-                                    "password_confirmation": {
-                                        "type": "string",
-                                        "example": "password123"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Utilisateur créé avec succès",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "id": {
-                                            "type": "string",
-                                            "example": "uuid"
-                                        },
-                                        "name": {
-                                            "type": "string",
-                                            "example": "John Doe"
-                                        },
-                                        "email": {
-                                            "type": "string",
-                                            "format": "email",
-                                            "example": "john@example.com"
-                                        },
-                                        "email_verified_at": {
-                                            "type": "string",
-                                            "format": "date-time"
-                                        },
-                                        "created_at": {
-                                            "type": "string",
-                                            "format": "date-time"
-                                        },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "format": "date-time"
                                         }
                                     },
                                     "type": "object"

@@ -15,27 +15,6 @@ class UserController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @OA\Get(
-     *     path="/api/ndeye-ndiaye/users",
-     *     tags={"Utilisateurs"},
-     *     summary="Liste des utilisateurs",
-     *     @OA\Response(
-     *         response=200,
-     *         description="Liste des utilisateurs récupérée avec succès",
-     *         @OA\JsonContent(
-     *             type="array",
-     *             @OA\Items(
-     *                 @OA\Property(property="id", type="string", example="uuid"),
-     *                 @OA\Property(property="name", type="string", example="John Doe"),
-     *                 @OA\Property(property="email", type="string", format="email", example="john@example.com"),
-     *                 @OA\Property(property="email_verified_at", type="string", format="date-time"),
-     *                 @OA\Property(property="created_at", type="string", format="date-time"),
-     *                 @OA\Property(property="updated_at", type="string", format="date-time")
-     *             )
-     *         )
-     *     )
-     * )
      */
     public function index(): JsonResponse
     {
