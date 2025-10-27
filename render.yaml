@@ -1,13 +1,9 @@
 services:
   - type: web
     name: projetbank-api
-    runtime: php
-    buildCommand: |
-      composer install --optimize-autoloader --no-dev
-      php artisan key:generate
-      php artisan config:cache
-      php artisan l5-swagger:generate
-    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     envVars:
       - key: APP_ENV
         value: production
