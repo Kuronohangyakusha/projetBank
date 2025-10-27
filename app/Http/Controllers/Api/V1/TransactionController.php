@@ -17,7 +17,7 @@ class TransactionController extends Controller
      * Display a listing of the resource.
      *
      * @OA\Get(
-     *     path="/api/ndeye-ndiaye/transactions",
+     *     path="/transactions",
      *     tags={"Transactions"},
      *     summary="Liste des transactions",
      *     @OA\Response(
@@ -118,7 +118,7 @@ class TransactionController extends Controller
      * Process a deposit
      *
      * @OA\Post(
-     *     path="/api/ndeye-ndiaye/transactions/depot",
+     *     path="/transactions/depot",
      *     tags={"Transactions"},
      *     summary="Effectuer un dépôt",
      *     @OA\RequestBody(
@@ -171,7 +171,7 @@ class TransactionController extends Controller
      * Process a withdrawal
      *
      * @OA\Post(
-     *     path="/api/ndeye-ndiaye/transactions/retrait",
+     *     path="/transactions/retrait",
      *     tags={"Transactions"},
      *     summary="Effectuer un retrait",
      *     @OA\RequestBody(
@@ -235,7 +235,7 @@ class TransactionController extends Controller
      * Process a transfer
      *
      * @OA\Post(
-     *     path="/api/ndeye-ndiaye/transactions/virement",
+     *     path="/transactions/virement",
      *     tags={"Transactions"},
      *     summary="Effectuer un virement",
      *     @OA\RequestBody(

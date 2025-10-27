@@ -13,7 +13,7 @@ use App\Models\User;
  * )
  *
  * @OA\Server(
- *     url="https://projetbank-4.onrender.com/api/ndeye-ndiaye",
+ *     url="https://projetbank-4.onrender.com",
  *     description="Serveur de production"
  * )
  */
@@ -21,7 +21,7 @@ class AuthController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/ndeye-ndiaye/users",
+     *     path="/users",
      *     summary="Liste des utilisateurs",
      *     tags={"Utilisateurs"},
      *     @OA\Response(

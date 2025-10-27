@@ -18,7 +18,7 @@ class CompteController extends Controller
      * Display a listing of the resource.
      *
      * @OA\Get(
-     *     path="/api/ndeye-ndiaye/comptes",
+     *     path="/comptes",
      *     tags={"Comptes"},
      *     summary="Liste des comptes avec pagination et filtres",
      *     @OA\Parameter(
@@ -125,7 +125,7 @@ class CompteController extends Controller
      * Display the specified resource.
      *
      * @OA\Get(
-     *     path="/api/ndeye-ndiaye/comptes/{compteId}",
+     *     path="/comptes/{compteId}",
      *     tags={"Comptes"},
      *     summary="Récupérer un compte spécifique",
      *     @OA\Parameter(
@@ -215,7 +215,7 @@ class CompteController extends Controller
      * Store a newly created resource in storage.
      *
      * @OA\Post(
-     *     path="/api/ndeye-ndiaye/comptes",
+     *     path="/comptes",
      *     tags={"Comptes"},
      *     summary="Créer un nouveau compte bancaire",
      *     @OA\RequestBody(
@@ -314,7 +314,7 @@ class CompteController extends Controller
      * Update the specified resource in storage.
      *
      * @OA\Patch(
-     *     path="/api/ndeye-ndiaye/comptes/{compteId}",
+     *     path="/comptes/{compteId}",
      *     tags={"Comptes"},
      *     summary="Mettre à jour les informations du client associé à un compte",
      *     @OA\Parameter(
@@ -449,7 +449,7 @@ class CompteController extends Controller
      * Get compte by numero
      *
      * @OA\Get(
-     *     path="/api/ndeye-ndiaye/comptes/numero/{numero}",
+     *     path="/comptes/numero/{numero}",
      *     tags={"Comptes"},
      *     summary="Rechercher un compte par numéro",
      *     @OA\Parameter(
@@ -499,7 +499,7 @@ class CompteController extends Controller
      * Get comptes by client ID
      *
      * @OA\Get(
-     *     path="/api/ndeye-ndiaye/comptes/client/{clientId}",
+     *     path="/comptes/client/{clientId}",
      *     tags={"Comptes"},
      *     summary="Comptes d'un client avec pagination et filtres",
      *     @OA\Parameter(
@@ -627,7 +627,7 @@ class CompteController extends Controller
      * Update compte solde
      *
      * @OA\Patch(
-     *     path="/api/ndeye-ndiaye/comptes/{id}/solde",
+     *     path="/comptes/{id}/solde",
      *     tags={"Comptes"},
      *     summary="Mettre à jour le solde d'un compte",
      *     @OA\Parameter(
