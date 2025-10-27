@@ -28,4 +28,4 @@ services:
       - key: SEED_DB
         value: false
     healthCheckPath: /api/ndeye-ndiaye/users
-    plan: starter
+    plan: free
