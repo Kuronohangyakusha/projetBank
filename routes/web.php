@@ -28,7 +28,7 @@ Route::get('/', function () {
 // Swagger documentation route
 Route::get('/ndiaye/documentation', function () {
     $documentation = 'default';
-    $urlToDocs = 'http://localhost:8082/docs'; // Force HTTP URL
+    $urlToDocs = url('/docs'); // Use current host URL (HTTPS in production, HTTP in local)
     $configUrl = config('l5-swagger.defaults.additional_config_url');
     $validatorUrl = config('l5-swagger.defaults.validator_url');
     $operationsSorter = config('l5-swagger.defaults.ui.operations_sort');
