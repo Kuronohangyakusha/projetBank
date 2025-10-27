@@ -2,7 +2,7 @@
 
 # Wait for database to be ready
 echo "Waiting for database to be ready..."
-until pg_isready -h $DB_HOST -p $DB_PORT -U $DB_USERNAME; do
+until pg_isready -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USERNAME"; do
   echo "Database is unavailable - sleeping"
   sleep 2
 done
