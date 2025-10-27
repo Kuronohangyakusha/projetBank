@@ -14,15 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return response()->json([
-        'message' => 'Bienvenue sur l\'API ProjetBank',
-        'version' => '1.0.0',
-        'documentation' => url('/ndiaye/documentation'),
-        'endpoints' => [
-            'api' => url('/api/ndeye-ndiaye'),
-            'docs' => url('/ndiaye/documentation')
-        ]
-    ]);
+    return 'OK';
 });
 
 // Swagger documentation route
