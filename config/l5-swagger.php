@@ -9,7 +9,7 @@ return [
                 'description' => 'API complète de gestion bancaire avec authentification, clients, comptes et transactions',
                 'version' => '1.0.0',
                 'schemes' => ['https'],
-                'host' => env('APP_URL') ? parse_url(env('APP_URL'), PHP_URL_HOST) : 'projetbank-4.onrender.com',
+                'host' => 'projetbank-4.onrender.com',
                 'basePath' => '/api/ndeye-ndiaye',
             ],
 
