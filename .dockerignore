@@ -9,7 +9,6 @@ README.md
 Dockerfile
 .dockerignore
 docker-compose.yml
-docker-entrypoint.sh
 .phpunit.result.cache
 storage/app/*
 storage/framework/cache/*
