@@ -8,6 +8,9 @@ return [
                 'title' => 'Ndiaye Ndeye - API Banque',
                 'description' => 'API complète de gestion bancaire avec authentification, clients, comptes et transactions',
                 'version' => '1.0.0',
+                'schemes' => ['https'],
+                'host' => 'projetbank-4.onrender.com',
+                'basePath' => '/api/ndeye-ndiaye',
             ],
 
             'routes' => [
